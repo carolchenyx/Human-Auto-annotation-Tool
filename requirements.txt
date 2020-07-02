@@ -1,0 +1,11 @@
+numpy==1.17.1
+filterpy
+Keras
+torch
+opencv-python
+argparse
+scikit-image
+scikit-learn
+matplotlib
+tensorflow
+tensorflow-gpu
