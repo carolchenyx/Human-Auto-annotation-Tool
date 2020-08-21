@@ -44,7 +44,7 @@ def extract_info():
                 keypoints = item["keypoints"]
                 temp = np.array([])
                 for k in range(0, len(keypoints), 3):
-                    if keypoints[k + 2] == 2:
+                    if keypoints[k + 2] == 2 and keypoints[k + 2] == 1:
                         if k == 0:
                             temp = np.array(keypoints[k : k + 2])
                         else:
