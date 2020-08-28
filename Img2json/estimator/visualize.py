@@ -71,13 +71,13 @@ class KeyPointVisualizer(object):
                     continue
                 cor_x, cor_y = int(kp_preds[n, 0]), int(kp_preds[n, 1])
                 part_line[n] = (cor_x, cor_y)
-                cv2.circle(bg, (cor_x, cor_y), 4, self.p_color[n], -1)
+                cv2.circle(bg, (cor_x, cor_y), 2, self.p_color[n], -1)
             # Draw limbs
             for i, (start_p, end_p) in enumerate(self.l_pair):
                 if start_p in part_line and end_p in part_line:
                     start_xy = part_line[start_p]
                     end_xy = part_line[end_p]
-                    cv2.line(bg, start_xy, end_xy, self.line_color[i], 16)
+                    cv2.line(bg, start_xy, end_xy, self.line_color[i], 6)
         return bg
 
     def vis_ske(self, frame, humans, scores):

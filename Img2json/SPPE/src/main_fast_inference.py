@@ -22,15 +22,18 @@ except AttributeError:
         return tensor
     torch._utils._rebuild_tensor_v2 = _rebuild_tensor_v2
 
+model_path = './models/sppe/duc_se.pth'
+# model_path = '../../PoseTrainingPytorch/exp/ceiling_tmp/1/1_best.pkl'
+
 
 class InferenNet(nn.Module):
     def __init__(self, kernel_size, dataset):
         super(InferenNet, self).__init__()
 
         model = createModel().cuda()
-        print('Loading pose model from {}'.format('./models/sppe/duc_se.pth'))
+        print('Loading pose model from {}'.format(model_path))
         sys.stdout.flush()
-        model.load_state_dict(torch.load('./models/sppe/duc_se.pth'))
+        model.load_state_dict(torch.load(model_path))
         model.eval()
         self.pyranet = model
 
@@ -56,8 +59,8 @@ class InferenNet_fast(nn.Module):
         super(InferenNet_fast, self).__init__()
 
         model = createModel().cuda()
-        print('Loading pose model from {}'.format('./models/sppe/duc_se.pth'))
-        model.load_state_dict(torch.load('./models/sppe/duc_se.pth'))
+        print('Loading pose model from {}'.format(model_path))
+        model.load_state_dict(torch.load(model_path))
         model.eval()
         self.pyranet = model
 

@@ -3,6 +3,7 @@ import numpy as np
 import h5py
 import config
 
+
 def extract_info():
     is_first = 0
 
