@@ -22,13 +22,14 @@ class ImageDetection:
         self.result_all['images'] = []
         self.json = open(src_folder+".json", "w")
 
+
     def __process_img(self, img_path, dest_path):
         img = cv2.imread(img_path)
         with torch.no_grad():
             inps, orig_img, boxes, scores, pt1, pt2 = object_detector.process(img)
             if boxes is not None:
                 boxes = torch.Tensor([[item[0],item[1],item[2]-item[0],item[3]-item[1]] for item in boxes.tolist()])
-                key_points, self.img, self.img_black = pose_estimator.process_img(inps, orig_img, boxes, scores,
+                key_points, self.img, self.img_black, score = pose_estimator.process_img(inps, orig_img, boxes, scores,
                                                                                        pt1, pt2)
                 if key_points:
                     cv2.imwrite(dest_path, self.img)
