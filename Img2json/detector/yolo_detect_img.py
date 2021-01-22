@@ -5,13 +5,12 @@ from Img2json.yolo.preprocess import prep_frame
 from Img2json.yolo.util import dynamic_write_results
 from Img2json.yolo.darknet import Darknet
 import cv2
+from Img2json.config import config
+import config as config_de
 
-# yolo_cfg = '../../MODELS/ceiling_detection/0825/yolov3-spp-1cls-leaky.cfg'
-# yolo_weight = "../../MODELS/ceiling_detection/0825/backup40.weights"
-yolo_cfg = '../../MODELS/underwater_rgb/0902_spp/yolov3-spp-1cls-leaky.cfg'
-yolo_weight = "../../MODELS/underwater_rgb/0902_spp/best.weights"
-# yolo_cfg = "yolo/cfg/yolov3-spp.cfg"
-# yolo_weight = 'models/yolo/yolov3-spp.weights'
+
+yolo_cfg = config_de.yolo_cfg
+yolo_weight = config_de.yolo_weight
 
 
 class ObjectDetectionYolo(object):

@@ -1,8 +1,16 @@
 #Img2json
-image_dir = 'img/left/0507_left'
+image_dir = '/media/hkuit104/My Passport/yoga_test'
 json_dir = ''
 
-
+yolo_cfg = "yolo/cfg/yolov3-spp.cfg"
+yolo_weight = 'models/yolo/yolov3-spp.weights'
+# yolo_cfg = '../../MODELS/ceiling_detection/0825/yolov3-spp-1cls-leaky.cfg'
+# yolo_weight = "../../MODELS/ceiling_detection/0825/backup40.weights"
+# yolo_cfg = '../../MODELS/underwater_rgb/0902_spp/yolov3-spp-1cls-leaky.cfg'
+# yolo_weight = "../../MODELS/underwater_rgb/0902_spp/best.weights"
+model_path = 'models/sppe/duc_se.pth'
+# model_path = '../../PoseTrainingPytorch/exp/ceiling_tmp/1/1_best.pkl'
+# model_path = '../../MODELS/underwater_pose/underwater_5/underwater_5_best.pkl'
 
 
 #json2h5
