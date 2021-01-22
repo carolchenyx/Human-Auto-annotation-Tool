@@ -6,11 +6,18 @@ from Img2json.yolo.util import dynamic_write_results
 from Img2json.yolo.darknet import Darknet
 import cv2
 
+# yolo_cfg = '../../MODELS/ceiling_detection/0825/yolov3-spp-1cls-leaky.cfg'
+# yolo_weight = "../../MODELS/ceiling_detection/0825/backup40.weights"
+yolo_cfg = '../../MODELS/underwater_rgb/0902_spp/yolov3-spp-1cls-leaky.cfg'
+yolo_weight = "../../MODELS/underwater_rgb/0902_spp/best.weights"
+# yolo_cfg = "yolo/cfg/yolov3-spp.cfg"
+# yolo_weight = 'models/yolo/yolov3-spp.weights'
+
 
 class ObjectDetectionYolo(object):
     def __init__(self, batchSize=1):
-        self.det_model = Darknet("yolo/cfg/yolov3-spp.cfg")
-        self.det_model.load_weights('models/yolo/yolov3-spp.weights')
+        self.det_model = Darknet(yolo_cfg)
+        self.det_model.load_weights(yolo_weight)
         self.det_model.net_info['height'] = config.input_size
         self.det_inp_dim = int(self.det_model.net_info['height'])
         assert self.det_inp_dim % 32 == 0

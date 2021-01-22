@@ -33,7 +33,11 @@ class PoseEstimator(object):
                 img = self.KPV.vis_ske(orig_img, kps, score)
                 return img, kps, img, boxes, score
             else:
+<<<<<<< HEAD
                 return orig_img, [], orig_img, boxes, 0
+=======
+                return orig_img, [], orig_img, boxes, score
+>>>>>>> origin/msccom
 
     def process_img(self, inps, orig_img, boxes, scores, pt1, pt2):
         # try:
@@ -49,7 +53,12 @@ class PoseEstimator(object):
                 hm_j = self.pose_model(inps_j)
                 hm.append(hm_j)
             hm = torch.cat(hm).cpu().data
+<<<<<<< HEAD
             ske_img, skeleton, ske_black_img, boxes, score = self.__get_skeleton(boxes, scores, hm, pt1, pt2, orig_img)
             return skeleton, ske_img, ske_black_img, score
+=======
+            ske_img, skeleton, ske_black_img, boxes, kps_score = self.__get_skeleton(boxes, scores, hm, pt1, pt2, orig_img)
+            return skeleton, ske_img, ske_black_img, kps_score
+>>>>>>> origin/msccom
         # except:
         #     return [], orig_img, orig_img
