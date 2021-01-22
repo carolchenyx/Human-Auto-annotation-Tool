@@ -101,7 +101,7 @@ class ImageDetection:
                 # if key_points:
             cv2.imwrite(dest_path, self.img)
             self.writeJson(self.img, self.key_points, self.boxes)
-            # self.img = cv2.resize(self.img, (720, 540))
+            self.img = cv2.resize(self.img, (720, 540))
             cv2.imshow("res", self.img)
             cv2.waitKey(2)
         # except:
@@ -146,11 +146,11 @@ class ImageDetection:
 
     def process(self):
         for self.idx in range(len(self.src_img_ls)):
-            # print("Processing image {}".format(self.idx))
-            # try:
-            self.__process_img(self.src_img_ls[self.idx], self.dest_img_ls[self.idx])
-            # except ValueError:
-            #     print(self.src_img_ls[self.idx][-16:])
+            print("Processing image {}".format(self.idx))
+            try:
+                self.__process_img(self.src_img_ls[self.idx], self.dest_img_ls[self.idx])
+            except ValueError:
+                print(self.src_img_ls[self.idx][-16:])
 
         self.result_all["images"] = self.images
         self.result_all["annotations"] = self.annotations
