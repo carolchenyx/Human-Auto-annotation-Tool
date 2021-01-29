@@ -9,8 +9,10 @@ from Img2json.config import config
 import config as config_de
 
 
+
 yolo_cfg = config_de.yolo_cfg
 yolo_weight = config_de.yolo_weight
+
 
 
 class ObjectDetectionYolo(object):

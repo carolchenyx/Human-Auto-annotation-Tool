@@ -2,6 +2,7 @@ import os
 import shutil
 import config
 
+
 img_folder = config.img_folder
 dest_folder = config.dest_folder
 os.makedirs(dest_folder, exist_ok=True)

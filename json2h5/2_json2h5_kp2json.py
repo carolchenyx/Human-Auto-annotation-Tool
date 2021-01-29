@@ -4,6 +4,7 @@ import h5py
 import config
 
 
+
 def extract_info():
     is_first = 0
 
@@ -12,7 +13,7 @@ def extract_info():
         with open(config.input_json[i], "r") as load_f:
             load_dict = json.load(load_f)
             anno = load_dict["images"]
-            images_dict = load_dict["images"]
+            images_dict = load_dict["annotations"]
             if i == 0:
                 bndboxes = np.array([])
                 parts = np.array([])
@@ -27,7 +28,7 @@ def extract_info():
                     )
 
                 temp_name = np.fromstring(
-                    images_dict[i]["image_name"], dtype=np.uint8
+                    anno[i]["file_name"], dtype=np.uint8
                 )
                 print(temp_name)
                 for i in range(16 - len(temp_name)):
@@ -68,4 +69,3 @@ def extract_info():
 
 if __name__ == "__main__":
     extract_info()
-
