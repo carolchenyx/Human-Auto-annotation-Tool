@@ -8,10 +8,12 @@ import cv2
 
 # yolo_cfg = '../../MODELS/ceiling_detection/0825/yolov3-spp-1cls-leaky.cfg'
 # yolo_weight = "../../MODELS/ceiling_detection/0825/backup40.weights"
-yolo_cfg = '../../MODELS/underwater_rgb/0902_spp/yolov3-spp-1cls-leaky.cfg'
-yolo_weight = "../../MODELS/underwater_rgb/0902_spp/best.weights"
-# yolo_cfg = "yolo/cfg/yolov3-spp.cfg"
-# yolo_weight = 'models/yolo/yolov3-spp.weights'
+# yolo_cfg = '../../MODELS/underwater_rgb/0902_spp/yolov3-spp-1cls-leaky.cfg'
+# yolo_weight = "../../MODELS/underwater_rgb/0902_spp/best.weights"
+# yolo_cfg = "yolo/cfg/yolov3-original-1cls-leaky.cfg"
+# yolo_weight = 'models/yolo/best.weights'
+yolo_cfg = "/media/hkuit155/8221f964-4062-4f55-a2f3-78a6632f7418/Autoannotation_Pose/Img2json/yolo/cfg/yolov3-spp.cfg"
+yolo_weight = '/media/hkuit155/8221f964-4062-4f55-a2f3-78a6632f7418/Autoannotation_Pose/Img2json/models/yolo/yolov3-spp.weights'
 
 
 class ObjectDetectionYolo(object):

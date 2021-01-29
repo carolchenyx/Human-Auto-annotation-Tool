@@ -118,7 +118,7 @@ class ImageDetection:
         some_id = image_id
 
         self.images.append({"id": id,
-                            "file_name": file_name,
+                            "image_id": file_name,
                             "width": width,
                             "height": height,
                             "url": url})
@@ -134,7 +134,7 @@ class ImageDetection:
                     self.keypoints_json.append(0)
             for j in range(4):
                 self.bbox.append(bbox[0][j].item())
-            self.annotations.append({"image_id": image_id,
+            self.annotations.append({"image_name": file_name,
                                      "category_id": 0,
                                      "bbox": self.bbox,
                                      "keypoints": self.keypoints_json,
@@ -147,6 +147,7 @@ class ImageDetection:
     def process(self):
         for self.idx in range(len(self.src_img_ls)):
             print("Processing image {}".format(self.idx))
+            # print("Processing image {}".format(self.src_img_ls[self.idx]))
             try:
                 self.__process_img(self.src_img_ls[self.idx], self.dest_img_ls[self.idx])
             except ValueError:
