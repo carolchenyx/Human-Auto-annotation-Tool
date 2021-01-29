@@ -24,6 +24,8 @@ class ImageDetection:
 
     def __process_img(self, img_path, dest_path):
         img = cv2.imread(img_path)
+        if img is None:
+            return
         with torch.no_grad():
             inps, orig_img, boxes, scores, pt1, pt2 = object_detector.process(img)
             if boxes is not None:
