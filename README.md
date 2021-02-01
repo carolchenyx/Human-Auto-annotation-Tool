@@ -1,5 +1,5 @@
 # Antoannotation_Pose
-
+This is the tool for auto pose annotation
 
 
 ## THe output format of the json file is coco.
