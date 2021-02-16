@@ -1,4 +1,4 @@
-# Antoannotation_Pose
+# Human-Auto-annotation-Tool
 This is the tool for auto pose annotation
 
 
