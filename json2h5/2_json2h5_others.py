@@ -11,7 +11,7 @@ def extract_info():
         with open(config.input_json[i], "r") as load_f:
             load_dict = json.load(load_f)
             anno = load_dict["annotations"]
-            keypoints_name = load_dict["categories"][0]["keypoints"]
+            # keypoints_name = load_dict["categories"][0]["keypoints"]
             images_dict = load_dict["images"]
             if i == 0:
                 bndboxes = np.array([])
@@ -45,7 +45,7 @@ def extract_info():
                 keypoints = item["keypoints"]
                 temp = np.array([])
                 for k in range(0, len(keypoints), 3):
-                    if keypoints[k + 2] == 2 and keypoints[k + 2] == 1:
+                    if keypoints[k + 2] == 2 or keypoints[k + 2] == 1:
                         if k == 0:
                             temp = np.array(keypoints[k : k + 2])
                         else:

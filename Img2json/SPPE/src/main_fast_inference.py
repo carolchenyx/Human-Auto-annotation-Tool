@@ -8,7 +8,7 @@ from Img2json.SPPE.src.utils.img import flip, shuffleLR
 from Img2json.SPPE.src.utils.eval import getPrediction
 from Img2json.SPPE.src.models.FastPose import createModel
 
-import time
+import config
 import sys
 
 import torch._utils
@@ -22,8 +22,9 @@ except AttributeError:
         return tensor
     torch._utils._rebuild_tensor_v2 = _rebuild_tensor_v2
 
-model_path = './models/sppe/duc_se.pth'
-# model_path = '../../PoseTrainingPytorch/exp/ceiling_tmp/1/1_best.pkl'
+
+model_path = config.model_path
+
 
 
 class InferenNet(nn.Module):

@@ -12,7 +12,7 @@ pose_estimator = PoseEstimator()
 
 class ImageDetection:
     def __init__(self, src_folder, dest_folder):
-        self.src_img_ls = [os.path.join(src_folder, img_name) for img_name in os.listdir(src_folder)]
+        self.src_img_ls = [os.path.join(src_folder,img_name) for img_name in os.listdir(src_folder)]
         self.dest_img_ls = [os.path.join(dest_folder, img_name) for img_name in os.listdir(src_folder)]
         self.idx = 0
         self.keypoints_json = []
@@ -27,7 +27,7 @@ class ImageDetection:
             inps, orig_img, boxes, scores, pt1, pt2 = object_detector.process(img)
             if boxes is not None:
 
-                key_points, self.img, self.img_black = pose_estimator.process_img(inps, orig_img, boxes, scores,
+                key_points, self.img, self.img_black, _ = pose_estimator.process_img(inps, orig_img, boxes, scores,
                                                                                        pt1, pt2)
                 if key_points:
                     cv2.imwrite(dest_path, self.img)
@@ -58,8 +58,6 @@ class ImageDetection:
                 pass
 
         self.json.write(json.dumps(self.result_all))
-
-
 
 
 if __name__ == '__main__':

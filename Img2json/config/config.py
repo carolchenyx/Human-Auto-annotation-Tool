@@ -12,7 +12,6 @@ output_width = 64
 fast_inference = True
 pose_batch = 80
 
-
 # For detection
 video_path = "Video/v1.mp4"
 frame_size = (540, 360)

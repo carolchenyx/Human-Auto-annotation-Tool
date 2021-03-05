@@ -1,24 +1,38 @@
 #Img2json
-image_dir = 'img/ceiling_pre_bad/image'
-json_dir = ''
+
+# image_dir = 'img/yoga_3'
+# json_dir = 'img/yoga_3'
+image_dir = '/home/hkuit155/Downloads/yoga_rename/yoga_rename_24'
+# image_dir = "/media/hkuit155/8221f964-4062-4f55-a2f3-78a6632f7418/Autoannotation_Pose/Img2json/img/tree_new"
+json_dir = '/home/hkuit155/Downloads/yoga_run/24'
 
 
+yolo_cfg = "yolo/cfg/yolov3-spp.cfg"
+yolo_weight = 'models/yolo/yolov3-spp.weights'
+# yolo_cfg = '../../MODELS/ceiling_detection/0825/yolov3-spp-1cls-leaky.cfg'
+# yolo_weight = "../../MODELS/ceiling_detection/0825/backup40.weights"
+# yolo_cfg = '../../MODELS/underwater_rgb/0902_spp/yolov3-spp-1cls-leaky.cfg'
+# yolo_weight = "../../MODELS/underwater_rgb/0902_spp/best.weights"
+model_path = 'models/sppe/duc_se.pth'
+# model_path = '../../PoseTrainingPytorch/exp/ceiling_tmp/1/1_best.pkl'
+# model_path = '../../MODELS/underwater_pose/underwater_5/underwater_5_best.pkl'
 
 
 #json2h5
 #0_rename_img
-img_folder = ""
-dest_folder = "img/0612_underwater"
+img_folder = "/home/hkuit155/Downloads/yoga_rename/yoga_rename_24"
+dest_folder = "/home/hkuit155/Downloads/yoga_rename/yoga_rename_24"
 
 #1_renamejson
-#ceiling pose:0,2,4,6,8,....
-#underwater pose:1,3,5,7,9,...
-imageandjson_first_number = "3"
+#ceiling pose:3
+#underwater pose:2
+#yoga+ai: 0
+imageandjson_first_number = "1"
 
 number_json_file = 2
 json_filename = '/media/hkuit155/8221f964-4062-4f55-a2f3-78a6632f7418/Autoannotation_Pose/json2h5/json/0612_underwater_all.json'
 output_jsonname = '/media/hkuit155/8221f964-4062-4f55-a2f3-78a6632f7418/Autoannotation_Pose/json2h5/json/0612_underwater_all_rename.json'
 
 #2_json2h5_others/2_json2h5_kp2json
-input_json = ['json/0612_underwater_all_rename.json','json/0612_underwater_all_rename.json']
-output_h5name = 'h5/0612_underwater_all_rename.h5'
+input_json = ["/home/hkuit155/Documents/yoga_train.json"]
+output_h5name = '/home/hkuit155/Documents/yoga_train.h5'

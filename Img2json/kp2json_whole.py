@@ -84,7 +84,6 @@ class ImageDetection:
         self.kps_score = [[]]
 
     def __process_img(self, img_path, dest_path):
-        self.clear()
         self.img = cv2.imread(img_path)
         # if not img:
         #     return
@@ -92,14 +91,12 @@ class ImageDetection:
         with torch.no_grad():
             try:
                 inps, orig_img, boxes, scores, pt1, pt2 = object_detector.process(self.img)
-                inps, orig_img, boxes, scores, pt1, pt2 = inps[[0]], orig_img, boxes[[0]], scores[[0]], pt1[[0]], pt2[[0]]
                 if boxes is not None:
                     self.boxes = torch.Tensor([[item[0],item[1],item[2]-item[0],item[3]-item[1]] for item in boxes.tolist()])
                     self.key_points, self.img, self.img_black, self.kps_score = pose_estimator.process_img(inps, orig_img, boxes, scores,
                                                                                            pt1, pt2)
             except ValueError:
                 print(img_path)
-
                 pass
                 # if key_points:
             cv2.imwrite(dest_path, self.img)
@@ -108,7 +105,10 @@ class ImageDetection:
             cv2.imshow("res", self.img)
             cv2.waitKey(2)
 
-    def writeImageJson(self, image):
+    # def writeImageJson(self, image):
+
+
+    def writeJson(self, image, kps, bbox):
         file_name = str(self.src_img_ls[self.idx]).split("/")[-1]
         id = self.id_cnt
         width = image.shape[1]
@@ -119,7 +119,7 @@ class ImageDetection:
         some_id = image_id
 
         self.images.append({"id": id,
-                            "file_name": file_name,
+            "file_name": file_name,
                             "width": width,
                             "height": height,
                             "url": url})
@@ -127,21 +127,25 @@ class ImageDetection:
         #     pass
 
     def writeJson(self, image, kps, bbox):
-        # file_name = str(self.src_img_ls[self.idx]).split("/")[-1]
-        # id = self.id_cnt
-        # width = image.shape[1]
-        # height = image.shape[0]
-        # url = "http://localhost:8007/" + file_name
-        # # # annotation data
+        file_name = str(self.src_img_ls[self.idx]).split("/")[-1]
+        id = self.id_cnt
+        width = image.shape[1]
+        height = image.shape[0]
+        url = "http://localhost:8007/" + file_name
+        # annotation data
         image_id = self.id_cnt
         some_id = image_id
 
-        # self.images.append({"id": id,
-        #                     "file_name": file_name,
-        #                     "width": width,
-        #                     "height": height,
-        #                     "url": url})
-        # print("id: ", self.id_cnt, ", length: ", len(kps[0]))
+        self.images.append({"id": id,
+                            "file_name": file_name,
+                            "width": width,
+                            "height": height,
+                            "url": url,
+                            "image_id": file_name,
+                            "width": width,
+                            "height": height,
+                            "url": url})
+        # # print("id: ", self.id_cnt, ", length: ", len(kps[0]))
 
         if len(bbox) > 0 and len(kps) > 0:
             for i in range(len(kps[0])):
@@ -153,7 +157,8 @@ class ImageDetection:
                     self.keypoints_json.append(0)
             for j in range(4):
                 self.bbox.append(bbox[0][j].item())
-            self.annotations.append({"image_id": image_id,
+
+            self.annotations.append({"image_name": file_name,
                                      "category_id": 0,
                                      "bbox": self.bbox,
                                      "keypoints": self.keypoints_json,
@@ -166,6 +171,8 @@ class ImageDetection:
     def process(self):
         for self.idx in range(len(self.src_img_ls)):
             print("Processing image {}".format(self.idx))
+
+            # print("Processing image {}".format(self.src_img_ls[self.idx]))
             try:
                 self.__process_img(self.src_img_ls[self.idx], self.dest_img_ls[self.idx])
             except ValueError:

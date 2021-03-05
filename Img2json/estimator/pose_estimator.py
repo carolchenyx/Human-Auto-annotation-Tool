@@ -4,6 +4,7 @@ from .nms import pose_nms
 from Img2json.SPPE.src.main_fast_inference import *
 from Img2json.estimator.datatset import Mscoco
 from Img2json.SPPE.src.utils.eval import getPrediction
+from Img2json.config import config
 
 
 class PoseEstimator(object):
@@ -35,6 +36,7 @@ class PoseEstimator(object):
             else:
                 return orig_img, [], orig_img, boxes, score
 
+
     def process_img(self, inps, orig_img, boxes, scores, pt1, pt2):
         # try:
             datalen = inps.size(0)
@@ -51,5 +53,6 @@ class PoseEstimator(object):
             hm = torch.cat(hm).cpu().data
             ske_img, skeleton, ske_black_img, boxes, kps_score = self.__get_skeleton(boxes, scores, hm, pt1, pt2, orig_img)
             return skeleton, ske_img, ske_black_img, kps_score
+
         # except:
         #     return [], orig_img, orig_img
