@@ -184,8 +184,11 @@ class ImageDetection:
 
 
 if __name__ == '__main__':
-    src_folder = config.image_dir
-    dest_folder = src_folder + "_kps"
-    os.makedirs(dest_folder, exist_ok=True)
-    ImageDetection(src_folder, dest_folder).process()
+    src_folder = "/home/hkuit155/Downloads/yoga_rename"
+    files = os.listdir(src_folder)
+    for file in files:
+        file = os.path.join(src_folder, file)
+        dest_folder = file + "_kps"
+        os.makedirs(dest_folder, exist_ok=True)
+        ImageDetection(file, dest_folder).process()
 
