@@ -1,0 +1,100 @@
+﻿Installation:
+0. Requirements:
+# Make sure anaconda and mongodb installed in your PC. 
+# Their installation tutorials may refer to the following,
+# Anaconda: https://docs.anaconda.com/anaconda/install/
+# mongoDB: https://docs.mongodb.com/manual/administration/install-community/
+
+1. After installing anaconda and mongoDB, open a cmd and enter(line by line):
+
+conda create -n annotation python=2.7
+
+conda activate annotation
+
+cd (to your desired download destination, e.g. Desktop)
+
+git clone https://github.com/visipedia/annotation_tools.git
+
+cd annotation_tools
+
+2. change the requierments.txt to the following
+
+flask==1.1.1
+flask-pymongo==2.3.0
+jinja2==2.10.1
+pymongo==3.8.0
+setuptools==44.0.0
+sqlite==3.30.1
+werkzeug==0.15.5
+wheel==0.33.4
+wincertstore==0.2
+click==7.0
+itsdangerous==1.1.0
+markupsafe==1.1.1
+
+3. using the same cmd and type
+
+pip install -r requirements.txt
+
+# if read timedout error occurs, type the following
+
+pip --default-timeout=100 install -r requirements.txt
+
+# if the error still exists, try replacing 100 with a bigger no. e.g. 500
+
+------------------------------------------------------------
+
+Start from here:
+1. [MongoDB] For the first time, open an administrative cmd and type 
+
+"C:\Program Files\MongoDB\Server\4.2\bin\mongod.exe"
+
+# For the second time, type
+
+"C:\Program Files\MongoDB\Server\4.2\bin\mongod.exe" --dbpath="c:\data\db"
+
+2. [Annotation_tools server] Open a new cmd and enter
+
+conda activate annotation
+
+cd (annotation_tools folder's path)
+
+python run.py --port 8008
+
+
+3. [Local Host] Open a new cmd again and enter
+
+conda activate annotation
+
+cd (annotation_tools folder's path)
+
+cd (image foler name)
+
+python -m SimpleHTTPServer 8007
+
+
+4. [Upload the dataset] Open the 4th cmd and enter
+
+conda activate annotation
+
+cd (annotation_tools folder's path)
+
+python -m annotation_tools.db_dataset_utils --action load --dataset (json file path)
+
+
+5a. [Start annotating] Open your web browser and go to
+
+localhost:8008/edit_task/?start=0&end=100  (--> this meas editting 100 images starting from the image with id 0)
+
+5b. [Annotation remarks]
+
+For safety, click "Save" button after annotating every 1-5 images, remember click "Save" 1 more time before exporting
+
+6. [Export the annotated images] Using the same cmd in step 4 and type
+
+python -m annotation_tools.db_dataset_utils --action export --output (output path) --denormalize
+
+
+7. [Clear the uploaded data] Using the same cmd in step 4 adn type
+
+python -m annotation_tools.db_dataset_utils --action drop
